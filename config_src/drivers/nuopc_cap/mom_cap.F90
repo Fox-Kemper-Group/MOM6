@@ -1083,8 +1083,11 @@ subroutine InitializeRealize(gcomp, importState, exportState, clock, rc)
         if (mask(k) /= 0) then
           mesh_areas(k) = dataPtr_mesh_areas(k)
           model_areas(k) = ocean_grid%AreaT(i,j) / ocean_grid%Rad_Earth_L**2
-          mod2med_areacor(k) = model_areas(k) / mesh_areas(k)
-          med2mod_areacor(k) = mesh_areas(k) / model_areas(k)
+!PSH begin
+!Commented out as a fix to avoid issues with zonally re-entrant grids
+!          mod2med_areacor(k) = model_areas(k) / mesh_areas(k)
+!          med2mod_areacor(k) = mesh_areas(k) / model_areas(k)
+!PSH end
         end if
       end do
     end do
